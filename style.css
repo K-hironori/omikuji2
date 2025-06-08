@@ -1,0 +1,106 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+    overflow: hidden; /* 花火動画がはみ出す場合のスクロールバー防止 */
+}
+
+.container {
+    text-align: center;
+    position: relative;
+}
+
+#omikuji-area {
+    position: relative;
+    width: 150px; /* omikuji.png の実際の幅に合わせて調整してください */
+    height: 250px; /* omikuji.png の実際の高さに合わせて調整してください */
+    margin: 20px auto;
+    cursor: pointer;
+    user-select: none; /* テキスト選択を防ぐ */
+}
+
+#tube {
+    width: 100%;
+    height: auto; /* アスペクト比を維持 */
+    position: relative;
+    z-index: 10;
+    pointer-events: none; /* 画像自体へのクリックイベントを無効化し、親要素(#omikuji-area)で受ける */
+}
+
+#stick-container {
+    position: absolute;
+    /* 筒の口の位置に合わせて調整してください */
+    /* 例: 筒の上部から棒が出る場合 top: 適切な値px; */
+    /* 例: 筒の中間から棒が出る場合 top: 50%; transform: translateY(-適切な値px); */
+    bottom: 50px; /* 仮: 筒の下部から棒が少し見える位置 (omikuji.pngの形状による) */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px; /* 棒の幅 + ボーダー */
+    height: 180px; /* 棒の高さ。棒が完全に隠れるように、かつ飛び出すスペースを確保 */
+    overflow: hidden; /* 初期状態で棒を隠すため */
+    z-index: 5; /* 筒(tube)より手前、または奥に設定 */
+}
+
+#stick {
+    width: 40px;
+    height: 180px;
+    background: #f5e0b0; /* 竹っぽい色 */
+    border: 4px solid #836b46;
+    border-radius: 4px;
+    position: absolute;
+    left: 50%;
+    bottom: 0; /* stick-container の下端を基準 */
+    transform: translate(-50%, 100%); /* 初期状態: 完全に下に隠す */
+    box-sizing: border-box;
+    display: none; /* JavaScriptで表示を制御 */
+}
+
+#stick .fortune-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 1.6rem; /* 見やすさのために少し大きく */
+    font-weight: bold;
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    padding: 10px 0; /* 文字の上下に少し余白 */
+}
+
+#draw-again-button {
+    margin-top: 30px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#draw-again-button:hover {
+    background-color: #45a049;
+}
+
+#draw-again-button:active {
+    transform: scale(0.98);
+}
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 100; /* 最前面に表示 */
+    /* display: none; JavaScriptで表示を制御 */
+}

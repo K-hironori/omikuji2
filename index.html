@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おみくじ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="omikuji-area">
+            <!-- ユーザーが assets/omikuji.png を配置することを想定 -->
+            <img src="assets/omikuji.png" alt="おみくじ筒" id="tube">
+            <div id="stick-container">
+                <div id="stick">
+                    <span class="fortune-text"></span>
+                </div>
+            </div>
+        </div>
+        <button id="draw-again-button" style="display: none;">もう一度引く</button>
+    </div>
+
+    <!-- ユーザーが assets/fireworks.mp4 を配置することを想定 -->
+    <video id="fireworks" src="assets/fireworks.mp4" muted playsinline style="display: none;"></video>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
